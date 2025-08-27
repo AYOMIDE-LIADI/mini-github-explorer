@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useSession, signIn, signOut } from "next-auth/react";
 import useDarkMode from '../hooks/useDarkMode';
 import { SunIcon, MoonIcon } from "@heroicons/react/24/solid"; 
+import Image from "next/image";
 
 
 type GithubUser = {
@@ -57,11 +58,16 @@ export default function HomePage() {
       if (!rRes.ok) throw new Error('Failed to fetch repositories');
       const rData: GithubRepo[] = await rRes.json();
       setRepos(rData);
-    } catch (e: any) {
-      setError(e.message || 'Something went wrong');
-    } finally {
-      setLoading(false);
-    }
+    }  catch (e: unknown) {
+        if (e instanceof Error) {
+          setError(e.message);
+        } else {
+          setError('Something went wrong');
+        }
+      } finally {
+        setLoading(false);
+      }
+
   };
 
   const formatDate = (d: string) =>
@@ -158,11 +164,19 @@ export default function HomePage() {
           <div className="card bg-base-100 shadow-xl mb-8 border-base-200 p-3.5">
             <div className="card-body">
               <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-                <img
+                {/* <img
                   src={user.avatar_url}
                   alt={`${user.login} avatar`}
                   className="w-28 h-28 rounded-full ring ring-primary ring-offset-2 shadow-lg"
-                />
+                /> */}
+                <Image 
+                    src={user.avatar_url} 
+                    alt="Profile picture" 
+                    width={100} 
+                    height={100} 
+                 className="w-28 h-28 rounded-full ring ring-primary ring-offset-2 shadow-lg"
+
+                  />
                 <div className="flex-1 text-center sm:text-left">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
                     <h2 className="card-title text-lg md:text-xl">{user.name ?? user.login}</h2>
