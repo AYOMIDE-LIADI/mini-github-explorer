@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mini GitHub Explorer
 
-## Getting Started
+A simple Next.js + TypeScript app that lets users search GitHub profiles and view their latest repositories.
 
-First, run the development server:
+## Features
+
+- Sign in with Google or GitHub
+- Search GitHub users by username
+- View user profile info: avatar, name, bio, followers, repos
+- View latest 5 repositories with stars and last updated date
+- Dark/Light mode toggle
+- Fully responsive design
+
+## Installation
+
+Clone the repo:
 
 ```bash
+git clone https://github.com/AYOMIDE-LIADI/mini-github-explorer.git
+cd mini-github-explorer
+
+#install depensencies
+
+npm install
+
+#start server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file:
 
-## Learn More
+```env
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=any-random-string
+GITHUB_ID=your_github_client_id
+GITHUB_SECRET=your_github_client_secret
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Replace your google_client_id / your_google_client_secret with credentials from your Google OAuth app.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Replace your github_id / your github_secret with credentials from your GitHub OAuth app.
 
-## Deploy on Vercel
+Replace your NEXTAUTH_SECRET with a random string 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#Usage
+
+Sign in using Google or GitHub
+
+Search for any GitHub username
+
+Explore the user’s profile and latest repositories
+
+Toggle between dark and light mode using the top-right icon
+
